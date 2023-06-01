@@ -27,7 +27,7 @@ def scrape_quotes():
         quotes_data.append({
             "text": text,
             "author": author,
-            "tags": tags
+            "tags": tags,
         })
 
     return quotes_data
