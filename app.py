@@ -49,9 +49,10 @@ def main():
         st.write(f"Author: {quote['author']}")
         st.write(f"Tags: {', '.join(quote['tags'])}")
 
-    st.title("Top Tags")
+    # Display the top tags in the sidebar
+    st.sidebar.title("Top Tags")
     for tag, count in top_tags:
-        st.write(f"{tag}: {count}")
+        st.sidebar.write(f"{tag}: {count}")
 
 if __name__ == "__main__":
     main()
