@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup
+from collections import Counter
 
 # Define the base URL
 BASE_URL = "https://quotes.toscrape.com/"
@@ -18,20 +19,20 @@ def scrape_quotes():
 
     # Extract the data from each quote element
     quotes_data = []
+    tags_data = []
     for quote_element in quote_elements:
         text = quote_element.find("span", class_="text").get_text()
         author = quote_element.find("small", class_="author").get_text()
         tags = [tag.get_text() for tag in quote_element.find_all("a", class_="tag")]
-        toptags = [tag.get_text() for tag in quote_element.find_all("a", class_="tag")]
-
         quotes_data.append({
             "text": text,
             "author": author,
             "tags": tags,
-            "top ten tags": toptags
         })
-
-    return quotes_data
+        tags_data.extend(tags)
+    
+    top_tags = Counter(tags_data).most_common(10)
+    return quotes_data, top_tags
 
 # Create a Streamlit web interface
 def main():
@@ -39,7 +40,7 @@ def main():
     st.write("Scraping quotes from https://quotes.toscrape.com/")
 
     # Scrape the website
-    quotes = scrape_quotes()
+    quotes, top_tags = scrape_quotes()
 
     # Display the scraped quotes
     for quote in quotes:
@@ -47,6 +48,10 @@ def main():
         st.write(f"Text: {quote['text']}")
         st.write(f"Author: {quote['author']}")
         st.write(f"Tags: {', '.join(quote['tags'])}")
+
+    st.title("Top Tags")
+    for tag, count in top_tags:
+        st.write(f"{tag}: {count}")
 
 if __name__ == "__main__":
     main()
