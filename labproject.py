@@ -1,11 +1,9 @@
 import streamlit as st
 import requests
-from bs4 import BeautifulSoup
 
 # Function to scrape data from a website
 def scrape_data(url):
     response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
     
     # Extract the data you need from the website
     # ...
