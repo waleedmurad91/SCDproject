@@ -22,6 +22,7 @@ def scrape_quotes():
         text = quote_element.find("span", class_="text").get_text()
         author = quote_element.find("small", class_="author").get_text()
         tags = [tag.get_text() for tag in quote_element.find_all("a", class_="tag")]
+        toptags = [tag.get_text() for tag in quote_element.find_all("a", class_="tag")]
 
         quotes_data.append({
             "text": text,
