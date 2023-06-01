@@ -28,6 +28,7 @@ def scrape_quotes():
             "text": text,
             "author": author,
             "tags": tags,
+            "toptags": top ten tags
         })
 
     return quotes_data
