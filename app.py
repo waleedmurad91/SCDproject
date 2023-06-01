@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 # Function to scrape car listings from PakWheels
 def scrape_pakwheels():
-    url = "https://www.pakwheels.com/"
+    url = "https://www.pakwheels.com/used-cars/family-cars/587667"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     
