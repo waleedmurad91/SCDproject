@@ -57,7 +57,7 @@ def main():
         st.write(f"Tags: {', '.join(quote['tags'])}")
 
     # Display the overall top tags in the sidebar
-    st.sidebar.title("Overall Top Tags")
+    st.sidebar.title(" Top Ten Tags")
     for tag, count in top_tags:
         st.sidebar.write(f"{tag}: {count}")
 
